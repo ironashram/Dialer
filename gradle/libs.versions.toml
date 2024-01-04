@@ -1,7 +1,7 @@
 [versions]
 #jetbrains
 kotlin = "1.9.10"
-kotlinxSerializationJson = "1.5.1"
+kotlinxSerializationJson = "1.6.2"
 #Fossify
 commons = "m1k-test-SNAPSHOT"
 #Gradle
