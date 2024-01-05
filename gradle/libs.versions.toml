@@ -3,7 +3,7 @@
 kotlin = "1.9.10"
 kotlinxSerializationJson = "1.6.2"
 #Fossify
-commons = "m1k-test-SNAPSHOT"
+commons = "1.0-SNAPSHOT"
 #Gradle
 gradlePlugins-agp = "8.2.1"
 #Other
@@ -21,7 +21,7 @@ app-version-versionCode = "1"
 app-version-versionName = "1.0.0"
 [libraries]
 #Fossify
-fossify-commons = { module = "com.github.ironashram:commons", version.ref = "commons" }
+fossify-commons = { module = "org.fossify.commons:Fossify-Commons", version.ref = "commons" }
 #Kotlin
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
 #Other

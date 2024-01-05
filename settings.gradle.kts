@@ -12,6 +12,8 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
         maven { setUrl("https://jitpack.io") }
+        maven { setUrl("https://nexus.m1k.cloud/repository/maven-releases/") }
+        maven { setUrl("https://nexus.m1k.cloud/repository/maven-snapshots/") }
     }
 }
 include(":app")
