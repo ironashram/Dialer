@@ -3,7 +3,7 @@
 kotlin = "1.9.21"
 kotlinxSerializationJson = "1.6.2"
 #Fossify
-commons = "1.0.99"
+commons = "1.0.101"
 #Gradle
 gradlePlugins-agp = "8.2.1"
 #Other

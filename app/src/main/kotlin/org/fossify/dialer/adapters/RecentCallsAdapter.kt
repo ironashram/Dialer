@@ -312,7 +312,7 @@ class RecentCallsAdapter(
             }
 
             itemRecentsDateTime.apply {
-                text = call.startTS.formatDateOrTime(context, refreshItemsListener != null, false)
+                text = call.startTS.formatDateOrTime(context, hideTimeAtOtherDays = false, showYearEvenIfCurrent = true)
                 setTextColor(if (call.type == Calls.MISSED_TYPE) redColor else textColor)
                 setTextSize(TypedValue.COMPLEX_UNIT_PX, currentFontSize * 0.8f)
             }
