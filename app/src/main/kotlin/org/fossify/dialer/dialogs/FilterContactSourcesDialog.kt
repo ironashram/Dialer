@@ -64,8 +64,8 @@ class FilterContactSourcesDialog(val activity: SimpleActivity, private val callb
 
             if (dialog == null) {
                 activity.getAlertDialogBuilder()
-                    .setPositiveButton(R.string.ok) { dialogInterface, i -> confirmContactSources() }
-                    .setNegativeButton(R.string.cancel, null)
+                    .setPositiveButton(org.fossify.commons.R.string.ok) { dialogInterface, i -> confirmContactSources() }
+                    .setNegativeButton(org.fossify.commons.R.string.cancel, null)
                     .apply {
                         activity.setupDialogStuff(binding.root, this) { alertDialog ->
                             dialog = alertDialog

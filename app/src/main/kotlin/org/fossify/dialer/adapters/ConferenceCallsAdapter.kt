@@ -54,7 +54,7 @@ class ConferenceCallsAdapter(
                             callContact.photoUri,
                             itemConferenceCallImage,
                             callContact.name,
-                            activity.getDrawable(R.drawable.ic_person_vector)
+                            activity.getDrawable(org.fossify.commons.R.drawable.ic_person_vector)
                         )
                     }
                 }

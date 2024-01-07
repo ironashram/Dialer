@@ -124,7 +124,7 @@ class RecentsHelper(private val context: Context) {
                 }
 
                 if (name.isEmpty() || name == "-1") {
-                    name = context.getString(R.string.unknown)
+                    name = context.getString(org.fossify.commons.R.string.unknown)
                 }
 
                 var photoUri = cursor.getStringValue(Calls.CACHED_PHOTO_URI) ?: ""

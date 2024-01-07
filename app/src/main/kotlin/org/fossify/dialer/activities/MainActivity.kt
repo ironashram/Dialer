@@ -66,7 +66,8 @@ class MainActivity : SimpleActivity() {
             checkContactPermissions()
 
             if (!config.wasOverlaySnackbarConfirmed && !Settings.canDrawOverlays(this)) {
-                val snackbar = Snackbar.make(binding.mainHolder, R.string.allow_displaying_over_other_apps, Snackbar.LENGTH_INDEFINITE).setAction(R.string.ok) {
+                val snackbar = Snackbar.make(binding.mainHolder, R.string.allow_displaying_over_other_apps, Snackbar.LENGTH_INDEFINITE).setAction(
+                    org.fossify.commons.R.string.ok) {
                     config.wasOverlaySnackbarConfirmed = true
                     startActivity(Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION))
                 }
@@ -79,7 +80,7 @@ class MainActivity : SimpleActivity() {
 
             handleNotificationPermission { granted ->
                 if (!granted) {
-                    PermissionRequiredDialog(this, R.string.allow_notifications_incoming_calls, { openNotificationSettings() })
+                    PermissionRequiredDialog(this, org.fossify.commons.R.string.allow_notifications_incoming_calls, { openNotificationSettings() })
                 }
             }
         } else {
@@ -104,7 +105,7 @@ class MainActivity : SimpleActivity() {
 
         updateMenuColors()
         val properPrimaryColor = getProperPrimaryColor()
-        val dialpadIcon = resources.getColoredDrawableWithColor(R.drawable.ic_dialpad_vector, properPrimaryColor.getContrastColor())
+        val dialpadIcon = resources.getColoredDrawableWithColor(org.fossify.commons.R.drawable.ic_dialpad_vector, properPrimaryColor.getContrastColor())
         binding.mainDialpadButton.setImageDrawable(dialpadIcon)
 
         updateTextColors(binding.mainHolder)
@@ -151,7 +152,7 @@ class MainActivity : SimpleActivity() {
         if (requestCode == REQUEST_CODE_SET_DEFAULT_DIALER) {
             checkContactPermissions()
         } else if (requestCode == REQUEST_CODE_SET_DEFAULT_CALLER_ID && resultCode != Activity.RESULT_OK) {
-            toast(R.string.must_make_default_caller_id_app, length = Toast.LENGTH_LONG)
+            toast(org.fossify.commons.R.string.must_make_default_caller_id_app, length = Toast.LENGTH_LONG)
             baseConfig.blockUnknownNumbers = false
             baseConfig.blockHiddenNumbers = false
         }
@@ -183,7 +184,7 @@ class MainActivity : SimpleActivity() {
             findItem(R.id.create_new_contact).isVisible = currentFragment == getContactsFragment()
             findItem(R.id.change_view_type).isVisible = currentFragment == getFavoritesFragment()
             findItem(R.id.column_count).isVisible = currentFragment == getFavoritesFragment() && config.viewType == VIEW_TYPE_GRID
-            findItem(R.id.more_apps_from_us).isVisible = !resources.getBoolean(R.bool.hide_google_relations)
+            findItem(R.id.more_apps_from_us).isVisible = !resources.getBoolean(org.fossify.commons.R.bool.hide_google_relations)
         }
     }
 
@@ -224,7 +225,7 @@ class MainActivity : SimpleActivity() {
     private fun changeColumnCount() {
         val items = ArrayList<RadioItem>()
         for (i in 1..CONTACTS_GRID_MAX_COLUMNS_COUNT) {
-            items.add(RadioItem(i, resources.getQuantityString(R.plurals.column_counts, i, i)))
+            items.add(RadioItem(i, resources.getQuantityString(org.fossify.commons.R.plurals.column_counts, i, i)))
         }
 
         val currentColumnCount = config.contactsGridColumnCount
@@ -256,7 +257,7 @@ class MainActivity : SimpleActivity() {
     }
 
     private fun clearCallHistory() {
-        val confirmationText = "${getString(R.string.clear_history_confirmation)}\n\n${getString(R.string.cannot_be_undone)}"
+        val confirmationText = "${getString(R.string.clear_history_confirmation)}\n\n${getString(org.fossify.commons.R.string.cannot_be_undone)}"
         ConfirmationDialog(this, confirmationText) {
             RecentsHelper(this).removeAllRecentCalls(this) {
                 runOnUiThread {
@@ -318,15 +319,15 @@ class MainActivity : SimpleActivity() {
         val icons = mutableListOf<Int>()
 
         if (showTabs and TAB_CONTACTS != 0) {
-            icons.add(R.drawable.ic_person_vector)
+            icons.add(org.fossify.commons.R.drawable.ic_person_vector)
         }
 
         if (showTabs and TAB_FAVORITES != 0) {
-            icons.add(R.drawable.ic_star_vector)
+            icons.add(org.fossify.commons.R.drawable.ic_star_vector)
         }
 
         if (showTabs and TAB_CALL_HISTORY != 0) {
-            icons.add(R.drawable.ic_clock_filled_vector)
+            icons.add(org.fossify.commons.R.drawable.ic_clock_filled_vector)
         }
 
         return icons
@@ -337,15 +338,15 @@ class MainActivity : SimpleActivity() {
         val icons = ArrayList<Int>()
 
         if (showTabs and TAB_CONTACTS != 0) {
-            icons.add(R.drawable.ic_person_outline_vector)
+            icons.add(org.fossify.commons.R.drawable.ic_person_outline_vector)
         }
 
         if (showTabs and TAB_FAVORITES != 0) {
-            icons.add(R.drawable.ic_star_outline_vector)
+            icons.add(org.fossify.commons.R.drawable.ic_star_outline_vector)
         }
 
         if (showTabs and TAB_CALL_HISTORY != 0) {
-            icons.add(R.drawable.ic_clock_vector)
+            icons.add(org.fossify.commons.R.drawable.ic_clock_vector)
         }
 
         return icons
@@ -405,10 +406,10 @@ class MainActivity : SimpleActivity() {
         binding.mainTabsHolder.removeAllTabs()
         tabsList.forEachIndexed { index, value ->
             if (config.showTabs and value != 0) {
-                binding.mainTabsHolder.newTab().setCustomView(R.layout.bottom_tablayout_item).apply {
-                    customView?.findViewById<ImageView>(R.id.tab_item_icon)?.setImageDrawable(getTabIcon(index))
-                    customView?.findViewById<TextView>(R.id.tab_item_label)?.text = getTabLabel(index)
-                    AutofitHelper.create(customView?.findViewById(R.id.tab_item_label))
+                binding.mainTabsHolder.newTab().setCustomView(org.fossify.commons.R.layout.bottom_tablayout_item).apply {
+                    customView?.findViewById<ImageView>(org.fossify.commons.R.id.tab_item_icon)?.setImageDrawable(getTabIcon(index))
+                    customView?.findViewById<TextView>(org.fossify.commons.R.id.tab_item_label)?.text = getTabLabel(index)
+                    AutofitHelper.create(customView?.findViewById(org.fossify.commons.R.id.tab_item_label))
                     binding.mainTabsHolder.addTab(this)
                 }
             }
@@ -432,9 +433,9 @@ class MainActivity : SimpleActivity() {
 
     private fun getTabIcon(position: Int): Drawable {
         val drawableId = when (position) {
-            0 -> R.drawable.ic_person_vector
-            1 -> R.drawable.ic_star_vector
-            else -> R.drawable.ic_clock_vector
+            0 -> org.fossify.commons.R.drawable.ic_person_vector
+            1 -> org.fossify.commons.R.drawable.ic_star_vector
+            else -> org.fossify.commons.R.drawable.ic_clock_vector
         }
 
         return resources.getColoredDrawableWithColor(drawableId, getProperTextColor())
@@ -442,9 +443,9 @@ class MainActivity : SimpleActivity() {
 
     private fun getTabLabel(position: Int): String {
         val stringId = when (position) {
-            0 -> R.string.contacts_tab
-            1 -> R.string.favorites_tab
-            else -> R.string.call_history_tab
+            0 -> org.fossify.commons.R.string.contacts_tab
+            1 -> org.fossify.commons.R.string.favorites_tab
+            else -> org.fossify.commons.R.string.call_history_tab
         }
 
         return resources.getString(stringId)
@@ -556,12 +557,12 @@ class MainActivity : SimpleActivity() {
 
         val faqItems = arrayListOf(
             FAQItem(R.string.faq_1_title, R.string.faq_1_text),
-            FAQItem(R.string.faq_9_title_commons, R.string.faq_9_text_commons)
+            FAQItem(org.fossify.commons.R.string.faq_9_title_commons, org.fossify.commons.R.string.faq_9_text_commons)
         )
 
-        if (!resources.getBoolean(R.bool.hide_google_relations)) {
-            faqItems.add(FAQItem(R.string.faq_2_title_commons, R.string.faq_2_text_commons))
-            faqItems.add(FAQItem(R.string.faq_6_title_commons, R.string.faq_6_text_commons))
+        if (!resources.getBoolean(org.fossify.commons.R.bool.hide_google_relations)) {
+            faqItems.add(FAQItem(org.fossify.commons.R.string.faq_2_title_commons, org.fossify.commons.R.string.faq_2_text_commons))
+            faqItems.add(FAQItem(org.fossify.commons.R.string.faq_6_title_commons, org.fossify.commons.R.string.faq_6_text_commons))
         }
 
         startAboutActivity(R.string.app_name, licenses, BuildConfig.VERSION_NAME, faqItems, true)

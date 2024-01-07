@@ -93,7 +93,7 @@ class DialpadActivity : SimpleActivity() {
                 dialpadAsteriskHolder,
                 dialpadHashtagHolder
             ).forEach {
-                it.background = ResourcesCompat.getDrawable(resources, R.drawable.pill_background, theme)
+                it.background = ResourcesCompat.getDrawable(resources, org.fossify.commons.R.drawable.pill_background, theme)
                 it.background?.alpha = LOWER_ALPHA_INT
             }
         }
@@ -116,7 +116,7 @@ class DialpadActivity : SimpleActivity() {
                 dialpad8Letters.append("\nШЩЪЫ")
                 dialpad9Letters.append("\nЬЭЮЯ")
 
-                val fontSize = resources.getDimension(R.dimen.small_text_size)
+                val fontSize = resources.getDimension(org.fossify.commons.R.dimen.small_text_size)
                 arrayOf(
                     dialpad2Letters, dialpad3Letters, dialpad4Letters, dialpad5Letters, dialpad6Letters, dialpad7Letters, dialpad8Letters,
                     dialpad9Letters
@@ -155,7 +155,7 @@ class DialpadActivity : SimpleActivity() {
 
         val properPrimaryColor = getProperPrimaryColor()
         val callIconId = if (areMultipleSIMsAvailable()) {
-            val callIcon = resources.getColoredDrawableWithColor(R.drawable.ic_phone_two_vector, properPrimaryColor.getContrastColor())
+            val callIcon = resources.getColoredDrawableWithColor(org.fossify.commons.R.drawable.ic_phone_two_vector, properPrimaryColor.getContrastColor())
             binding.apply {
                 dialpadCallTwoButton.setImageDrawable(callIcon)
                 dialpadCallTwoButton.background.applyColorFilter(properPrimaryColor)
@@ -165,9 +165,9 @@ class DialpadActivity : SimpleActivity() {
                 }
             }
 
-            R.drawable.ic_phone_one_vector
+            org.fossify.commons.R.drawable.ic_phone_one_vector
         } else {
-            R.drawable.ic_phone_vector
+            org.fossify.commons.R.drawable.ic_phone_vector
         }
 
         binding.apply {

@@ -35,14 +35,14 @@ class SettingsActivity : SimpleActivity() {
     private val binding by viewBinding(ActivitySettingsBinding::inflate)
     private val getContent = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
         if (uri != null) {
-            toast(R.string.importing)
+            toast(org.fossify.commons.R.string.importing)
             importCallHistory(uri)
         }
     }
 
     private val saveDocument = registerForActivityResult(ActivityResultContracts.CreateDocument(CALL_HISTORY_FILE_TYPE)) { uri ->
         if (uri != null) {
-            toast(R.string.exporting)
+            toast(org.fossify.commons.R.string.exporting)
             RecentsHelper(this).getRecentCalls(false, Int.MAX_VALUE) { recents ->
                 exportCallHistory(recents, uri)
             }
@@ -146,7 +146,7 @@ class SettingsActivity : SimpleActivity() {
     @TargetApi(Build.VERSION_CODES.N)
     private fun setupManageBlockedNumbers() {
         binding.apply {
-            settingsManageBlockedNumbersLabel.text = addLockedLabelIfNeeded(R.string.manage_blocked_numbers)
+            settingsManageBlockedNumbersLabel.text = addLockedLabelIfNeeded(org.fossify.commons.R.string.manage_blocked_numbers)
             settingsManageBlockedNumbersHolder.beVisibleIf(isNougatPlus())
             settingsManageBlockedNumbersHolder.setOnClickListener {
                 if (isOrWasThankYouInstalled()) {
@@ -178,10 +178,10 @@ class SettingsActivity : SimpleActivity() {
         binding.settingsFontSize.text = getFontSizeText()
         binding.settingsFontSizeHolder.setOnClickListener {
             val items = arrayListOf(
-                RadioItem(FONT_SIZE_SMALL, getString(R.string.small)),
-                RadioItem(FONT_SIZE_MEDIUM, getString(R.string.medium)),
-                RadioItem(FONT_SIZE_LARGE, getString(R.string.large)),
-                RadioItem(FONT_SIZE_EXTRA_LARGE, getString(R.string.extra_large))
+                RadioItem(FONT_SIZE_SMALL, getString(org.fossify.commons.R.string.small)),
+                RadioItem(FONT_SIZE_MEDIUM, getString(org.fossify.commons.R.string.medium)),
+                RadioItem(FONT_SIZE_LARGE, getString(org.fossify.commons.R.string.large)),
+                RadioItem(FONT_SIZE_EXTRA_LARGE, getString(org.fossify.commons.R.string.extra_large))
             )
 
             RadioGroupDialog(this@SettingsActivity, items, config.fontSize) {
@@ -201,10 +201,10 @@ class SettingsActivity : SimpleActivity() {
         binding.settingsDefaultTab.text = getDefaultTabText()
         binding.settingsDefaultTabHolder.setOnClickListener {
             val items = arrayListOf(
-                RadioItem(TAB_CONTACTS, getString(R.string.contacts_tab)),
-                RadioItem(TAB_FAVORITES, getString(R.string.favorites_tab)),
-                RadioItem(TAB_CALL_HISTORY, getString(R.string.call_history_tab)),
-                RadioItem(TAB_LAST_USED, getString(R.string.last_used_tab))
+                RadioItem(TAB_CONTACTS, getString(org.fossify.commons.R.string.contacts_tab)),
+                RadioItem(TAB_FAVORITES, getString(org.fossify.commons.R.string.favorites_tab)),
+                RadioItem(TAB_CALL_HISTORY, getString(org.fossify.commons.R.string.call_history_tab)),
+                RadioItem(TAB_LAST_USED, getString(org.fossify.commons.R.string.last_used_tab))
             )
 
             RadioGroupDialog(this@SettingsActivity, items, config.defaultTab) {
@@ -216,10 +216,10 @@ class SettingsActivity : SimpleActivity() {
 
     private fun getDefaultTabText() = getString(
         when (baseConfig.defaultTab) {
-            TAB_CONTACTS -> R.string.contacts_tab
-            TAB_FAVORITES -> R.string.favorites_tab
-            TAB_CALL_HISTORY -> R.string.call_history_tab
-            else -> R.string.last_used_tab
+            TAB_CONTACTS -> org.fossify.commons.R.string.contacts_tab
+            TAB_FAVORITES -> org.fossify.commons.R.string.favorites_tab
+            TAB_CALL_HISTORY -> org.fossify.commons.R.string.call_history_tab
+            else -> org.fossify.commons.R.string.last_used_tab
         }
     )
 
@@ -346,17 +346,17 @@ class SettingsActivity : SimpleActivity() {
             val objects = Json.decodeFromString<List<RecentCall>>(jsonString)
 
             if (objects.isEmpty()) {
-                toast(R.string.no_entries_for_importing)
+                toast(org.fossify.commons.R.string.no_entries_for_importing)
                 return
             }
 
             RecentsHelper(this).restoreRecentCalls(this, objects) {
-                toast(R.string.importing_successful)
+                toast(org.fossify.commons.R.string.importing_successful)
             }
         } catch (_: SerializationException) {
-            toast(R.string.invalid_file_format)
+            toast(org.fossify.commons.R.string.invalid_file_format)
         } catch (_: IllegalArgumentException) {
-            toast(R.string.invalid_file_format)
+            toast(org.fossify.commons.R.string.invalid_file_format)
         } catch (e: Exception) {
             showErrorToast(e)
         }
@@ -364,7 +364,7 @@ class SettingsActivity : SimpleActivity() {
 
     private fun exportCallHistory(recents: List<RecentCall>, uri: Uri) {
         if (recents.isEmpty()) {
-            toast(R.string.no_entries_for_exporting)
+            toast(org.fossify.commons.R.string.no_entries_for_exporting)
         } else {
             try {
                 val outputStream = contentResolver.openOutputStream(uri)!!
@@ -373,7 +373,7 @@ class SettingsActivity : SimpleActivity() {
                 outputStream.use {
                     it.write(jsonString.toByteArray())
                 }
-                toast(R.string.exporting_successful)
+                toast(org.fossify.commons.R.string.exporting_successful)
             } catch (e: Exception) {
                 showErrorToast(e)
             }

@@ -33,7 +33,7 @@ class FavoritesFragment(context: Context, attributeSet: AttributeSet) : MyViewPa
 
     override fun setupFragment() {
         val placeholderResId = if (context.hasPermission(PERMISSION_READ_CONTACTS)) {
-            R.string.no_contacts_found
+            org.fossify.commons.R.string.no_contacts_found
         } else {
             R.string.could_not_access_contacts
         }

@@ -83,7 +83,7 @@ class CallNotificationManager(private val context: Context) {
             }
 
             val builder = NotificationCompat.Builder(context, channelId)
-                .setSmallIcon(R.drawable.ic_phone_vector)
+                .setSmallIcon(org.fossify.commons.R.drawable.ic_phone_vector)
                 .setContentIntent(openAppPendingIntent)
                 .setPriority(if (isHighPriority) NotificationManager.IMPORTANCE_HIGH else NotificationCompat.PRIORITY_DEFAULT)
                 .setCategory(Notification.CATEGORY_CALL)

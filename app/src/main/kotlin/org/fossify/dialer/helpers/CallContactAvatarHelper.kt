@@ -19,7 +19,7 @@ class CallContactAvatarHelper(private val context: Context) {
             try {
                 val contentResolver = context.contentResolver
                 bitmap = if (isQPlus()) {
-                    val tmbSize = context.resources.getDimension(R.dimen.list_avatar_size).toInt()
+                    val tmbSize = context.resources.getDimension(org.fossify.commons.R.dimen.list_avatar_size).toInt()
                     contentResolver.loadThumbnail(photoUri, Size(tmbSize, tmbSize), null)
                 } else {
                     MediaStore.Images.Media.getBitmap(contentResolver, photoUri)
