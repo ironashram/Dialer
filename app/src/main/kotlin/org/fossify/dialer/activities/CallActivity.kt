@@ -20,6 +20,7 @@ import android.view.WindowManager
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.OvershootInterpolator
 import android.widget.ImageView
+import androidx.activity.OnBackPressedCallback
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.children
 import org.fossify.commons.extensions.*
@@ -77,6 +78,22 @@ class CallActivity : SimpleActivity() {
         addLockScreenFlags()
         CallManager.addListener(callCallback)
         updateCallContactInfo(CallManager.getPrimaryCall())
+
+        onBackPressedDispatcher.addCallback(this, object: OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if (binding.dialpadWrapper.isVisible()) {
+                    hideDialpad()
+                    return
+                } else {
+                    finish()
+                }
+
+                val callState = CallManager.getState()
+                if (callState == Call.STATE_CONNECTING || callState == Call.STATE_DIALING) {
+                    endCall()
+                }
+            }
+        })
     }
 
     override fun onNewIntent(intent: Intent?) {
@@ -101,20 +118,6 @@ class CallActivity : SimpleActivity() {
 
         if (screenOnWakeLock?.isHeld == true) {
             screenOnWakeLock!!.release()
-        }
-    }
-
-    override fun onBackPressed() {
-        if (binding.dialpadWrapper.isVisible()) {
-            hideDialpad()
-            return
-        } else {
-            super.onBackPressed()
-        }
-
-        val callState = CallManager.getState()
-        if (callState == Call.STATE_CONNECTING || callState == Call.STATE_DIALING) {
-            endCall()
         }
     }
 
@@ -206,7 +209,7 @@ class CallActivity : SimpleActivity() {
                 dialpadAsteriskHolder,
                 dialpadHashtagHolder
             ).forEach {
-                it.background = ResourcesCompat.getDrawable(resources, R.drawable.pill_background, theme)
+                it.background = ResourcesCompat.getDrawable(resources, org.fossify.commons.R.drawable.pill_background, theme)
                 it.background?.alpha = LOWER_ALPHA_INT
             }
 
@@ -298,12 +301,12 @@ class CallActivity : SimpleActivity() {
             }
 
             if (isRtl) {
-                callLeftArrow.setImageResource(R.drawable.ic_chevron_right_vector)
-                callRightArrow.setImageResource(R.drawable.ic_chevron_left_vector)
+                callLeftArrow.setImageResource(org.fossify.commons.R.drawable.ic_chevron_right_vector)
+                callRightArrow.setImageResource(org.fossify.commons.R.drawable.ic_chevron_left_vector)
             }
 
-            callLeftArrow.applyColorFilter(getColor(R.color.md_red_400))
-            callRightArrow.applyColorFilter(getColor(R.color.md_green_400))
+            callLeftArrow.applyColorFilter(getColor(org.fossify.commons.R.color.md_red_400))
+            callRightArrow.applyColorFilter(getColor(org.fossify.commons.R.color.md_green_400))
 
             startArrowAnimation(callLeftArrow, initialLeftArrowX, initialLeftArrowScaleX, initialLeftArrowScaleY, leftArrowTranslation)
             startArrowAnimation(callRightArrow, initialRightArrowX, initialRightArrowScaleX, initialRightArrowScaleY, rightArrowTranslation)
@@ -596,9 +599,9 @@ class CallActivity : SimpleActivity() {
                         }
 
                         val acceptDrawableId = when (index) {
-                            0 -> R.drawable.ic_phone_one_vector
-                            1 -> R.drawable.ic_phone_two_vector
-                            else -> R.drawable.ic_phone_vector
+                            0 -> org.fossify.commons.R.drawable.ic_phone_one_vector
+                            1 -> org.fossify.commons.R.drawable.ic_phone_two_vector
+                            else -> org.fossify.commons.R.drawable.ic_phone_vector
                         }
 
                         val rippleBg = resources.getDrawable(R.drawable.ic_call_accept, theme) as RippleDrawable

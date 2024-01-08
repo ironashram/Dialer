@@ -37,7 +37,7 @@ class SelectContactDialog(val activity: SimpleActivity, val contacts: List<Conta
         }
 
         activity.getAlertDialogBuilder()
-            .setNegativeButton(R.string.cancel, null)
+            .setNegativeButton(org.fossify.commons.R.string.cancel, null)
             .setOnKeyListener { _, i, keyEvent ->
                 if (keyEvent.action == KeyEvent.ACTION_UP && i == KeyEvent.KEYCODE_BACK) {
                     backPressed()
@@ -45,7 +45,7 @@ class SelectContactDialog(val activity: SimpleActivity, val contacts: List<Conta
                 true
             }
             .apply {
-                activity.setupDialogStuff(binding.root, this, R.string.choose_contact) { alertDialog ->
+                activity.setupDialogStuff(binding.root, this, org.fossify.commons.R.string.choose_contact) { alertDialog ->
                     dialog = alertDialog
                 }
             }
@@ -64,7 +64,7 @@ class SelectContactDialog(val activity: SimpleActivity, val contacts: List<Conta
     }
 
     private fun configureSearchView() = with(binding.contactSearchView) {
-        updateHintText(context.getString(R.string.search_contacts))
+        updateHintText(context.getString(org.fossify.commons.R.string.search_contacts))
         binding.topToolbarSearch.imeOptions = EditorInfo.IME_ACTION_DONE
 
         toggleHideOnScroll(true)
@@ -82,12 +82,12 @@ class SelectContactDialog(val activity: SimpleActivity, val contacts: List<Conta
 
     private fun MySearchMenu.setSearchViewListeners() {
         onSearchOpenListener = {
-            updateSearchViewLeftIcon(R.drawable.ic_cross_vector)
+            updateSearchViewLeftIcon(org.fossify.commons.R.drawable.ic_cross_vector)
         }
         onSearchClosedListener = {
             binding.topToolbarSearch.clearFocus()
             activity.hideKeyboard(binding.topToolbarSearch)
-            updateSearchViewLeftIcon(R.drawable.ic_search_vector)
+            updateSearchViewLeftIcon(org.fossify.commons.R.drawable.ic_search_vector)
         }
 
         onSearchTextChangedListener = { text ->
@@ -95,7 +95,8 @@ class SelectContactDialog(val activity: SimpleActivity, val contacts: List<Conta
         }
     }
 
-    private fun updateSearchViewLeftIcon(iconResId: Int) = with(binding.root.findViewById<ImageView>(R.id.top_toolbar_search_icon)) {
+    private fun updateSearchViewLeftIcon(iconResId: Int) = with(binding.root.findViewById<ImageView>(
+        org.fossify.commons.R.id.top_toolbar_search_icon)) {
         post {
             setImageResource(iconResId)
         }
@@ -125,7 +126,7 @@ class SelectContactDialog(val activity: SimpleActivity, val contacts: List<Conta
         contactsEmptyPlaceholder.beVisibleIf(contacts.isEmpty())
 
         if (contactSearchView.isSearchOpen) {
-            contactsEmptyPlaceholder.text = activity.getString(R.string.no_items_found)
+            contactsEmptyPlaceholder.text = activity.getString(org.fossify.commons.R.string.no_items_found)
         }
 
         letterFastscroller.beVisibleIf(contactsEmptyPlaceholder.isGone())

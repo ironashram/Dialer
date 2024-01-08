@@ -18,7 +18,7 @@ class SpeedDialAdapter(
         setupDragListener(true)
     }
 
-    override fun getActionMenuId() = R.menu.cab_delete_only
+    override fun getActionMenuId() = org.fossify.commons.R.menu.cab_delete_only
 
     override fun prepareActionMode(menu: Menu) {}
 

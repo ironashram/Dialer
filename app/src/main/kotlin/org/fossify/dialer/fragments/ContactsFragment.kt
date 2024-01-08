@@ -31,7 +31,7 @@ class ContactsFragment(context: Context, attributeSet: AttributeSet) : MyViewPag
 
     override fun setupFragment() {
         val placeholderResId = if (context.hasPermission(PERMISSION_READ_CONTACTS)) {
-            R.string.no_contacts_found
+            org.fossify.commons.R.string.no_contacts_found
         } else {
             R.string.could_not_access_contacts
         }
@@ -39,7 +39,7 @@ class ContactsFragment(context: Context, attributeSet: AttributeSet) : MyViewPag
         binding.fragmentPlaceholder.text = context.getString(placeholderResId)
 
         val placeholderActionResId = if (context.hasPermission(PERMISSION_READ_CONTACTS)) {
-            R.string.create_new_contact
+            org.fossify.commons.R.string.create_new_contact
         } else {
             R.string.request_access
         }
@@ -178,8 +178,8 @@ class ContactsFragment(context: Context, attributeSet: AttributeSet) : MyViewPag
     private fun requestReadContactsPermission() {
         activity?.handlePermission(PERMISSION_READ_CONTACTS) {
             if (it) {
-                binding.fragmentPlaceholder.text = context.getString(R.string.no_contacts_found)
-                binding.fragmentPlaceholder2.text = context.getString(R.string.create_new_contact)
+                binding.fragmentPlaceholder.text = context.getString(org.fossify.commons.R.string.no_contacts_found)
+                binding.fragmentPlaceholder2.text = context.getString(org.fossify.commons.R.string.create_new_contact)
                 ContactsHelper(context).getContacts(showOnlyContactsWithNumbers = true) { contacts ->
                     activity?.runOnUiThread {
                         gotContacts(contacts)

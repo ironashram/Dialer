@@ -40,9 +40,9 @@ class RecentCallsAdapter(
     private lateinit var incomingMissedCallIcon: Drawable
     var fontSize: Float = activity.getTextSize()
     private val areMultipleSIMsAvailable = activity.areMultipleSIMsAvailable()
-    private val redColor = resources.getColor(R.color.md_red_700)
+    private val redColor = resources.getColor(org.fossify.commons.R.color.md_red_700)
     private var textToHighlight = ""
-    private var durationPadding = resources.getDimension(R.dimen.normal_margin).toInt()
+    private var durationPadding = resources.getDimension(org.fossify.commons.R.dimen.normal_margin).toInt()
 
     init {
         initDrawables()
@@ -62,7 +62,7 @@ class RecentCallsAdapter(
             findItem(R.id.cab_call_sim_2).isVisible = hasMultipleSIMs && isOneItemSelected
             findItem(R.id.cab_remove_default_sim).isVisible = isOneItemSelected && (activity.config.getCustomSIM(selectedNumber) ?: "") != ""
 
-            findItem(R.id.cab_block_number).title = activity.addLockedLabelIfNeeded(R.string.block_number)
+            findItem(R.id.cab_block_number).title = activity.addLockedLabelIfNeeded(org.fossify.commons.R.string.block_number)
             findItem(R.id.cab_block_number).isVisible = isNougatPlus()
             findItem(R.id.cab_add_number).isVisible = isOneItemSelected
             findItem(R.id.cab_copy_number).isVisible = isOneItemSelected
@@ -163,7 +163,7 @@ class RecentCallsAdapter(
 
     private fun askConfirmBlock() {
         val numbers = TextUtils.join(", ", getSelectedItems().distinctBy { it.phoneNumber }.map { it.phoneNumber })
-        val baseString = R.string.block_confirmation
+        val baseString = org.fossify.commons.R.string.block_confirmation
         val question = String.format(resources.getString(baseString), numbers)
 
         ConfirmationDialog(activity, question) {
@@ -375,7 +375,7 @@ class RecentCallsAdapter(
                 findItem(R.id.cab_add_number).isVisible = !call.isUnknownNumber
                 findItem(R.id.cab_copy_number).isVisible = !call.isUnknownNumber
                 findItem(R.id.cab_show_call_details).isVisible = !call.isUnknownNumber
-                findItem(R.id.cab_block_number).title = activity.addLockedLabelIfNeeded(R.string.block_number)
+                findItem(R.id.cab_block_number).title = activity.addLockedLabelIfNeeded(org.fossify.commons.R.string.block_number)
                 findItem(R.id.cab_block_number).isVisible = isNougatPlus() && !call.isUnknownNumber
                 findItem(R.id.cab_remove_default_sim).isVisible = (activity.config.getCustomSIM(selectedNumber) ?: "") != "" && !call.isUnknownNumber
             }

@@ -91,7 +91,7 @@ class ContactsAdapter(
             findItem(R.id.cab_remove_default_sim).isVisible = isOneItemSelected && (activity.config.getCustomSIM(selectedNumber) ?: "") != ""
 
             findItem(R.id.cab_delete).isVisible = showDeleteButton
-            findItem(R.id.cab_create_shortcut).title = activity.addLockedLabelIfNeeded(R.string.create_shortcut)
+            findItem(R.id.cab_create_shortcut).title = activity.addLockedLabelIfNeeded(org.fossify.commons.R.string.create_shortcut)
             findItem(R.id.cab_create_shortcut).isVisible = isOneItemSelected && isOreoPlus()
             findItem(R.id.cab_view_details).isVisible = isOneItemSelected
             findItem(R.id.cab_block_unblock_contact).isVisible = isOneItemSelected && isNougatPlus()
@@ -160,9 +160,9 @@ class ContactsAdapter(
 
         activity.isContactBlocked(contact) { blocked ->
             val cabItemTitleRes = if (blocked) {
-                R.string.unblock_contact
+                org.fossify.commons.R.string.unblock_contact
             } else {
-                R.string.block_contact
+                org.fossify.commons.R.string.block_contact
             }
 
             callback(activity.addLockedLabelIfNeeded(cabItemTitleRes))
@@ -188,9 +188,9 @@ class ContactsAdapter(
     private fun tryBlocking(contact: Contact) {
         askConfirmBlock(contact) { contactBlocked ->
             val resultMsg = if (contactBlocked) {
-                R.string.block_contact_success
+                org.fossify.commons.R.string.block_contact_success
             } else {
-                R.string.block_contact_fail
+                org.fossify.commons.R.string.block_contact_fail
             }
 
             activity.toast(resultMsg)
@@ -201,9 +201,9 @@ class ContactsAdapter(
     private fun tryUnblocking(contact: Contact) {
         val contactUnblocked = activity.unblockContact(contact)
         val resultMsg = if (contactUnblocked) {
-            R.string.unblock_contact_success
+            org.fossify.commons.R.string.unblock_contact_success
         } else {
-            R.string.unblock_contact_fail
+            org.fossify.commons.R.string.unblock_contact_fail
         }
 
         activity.toast(resultMsg)
@@ -211,7 +211,7 @@ class ContactsAdapter(
     }
 
     private fun askConfirmBlock(contact: Contact, callback: (Boolean) -> Unit) {
-        val baseString = R.string.block_confirmation
+        val baseString = org.fossify.commons.R.string.block_confirmation
         val question = String.format(resources.getString(baseString), contact.name)
 
         ConfirmationDialog(activity, question) {
@@ -271,10 +271,10 @@ class ContactsAdapter(
         val items = if (itemsCnt == 1) {
             "\"${firstItem.getNameToDisplay()}\""
         } else {
-            resources.getQuantityString(R.plurals.delete_contacts, itemsCnt, itemsCnt)
+            resources.getQuantityString(org.fossify.commons.R.plurals.delete_contacts, itemsCnt, itemsCnt)
         }
 
-        val baseString = R.string.deletion_confirmation
+        val baseString = org.fossify.commons.R.string.deletion_confirmation
         val question = String.format(resources.getString(baseString), items)
 
         ConfirmationDialog(activity, question) {

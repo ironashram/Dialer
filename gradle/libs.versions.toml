@@ -1,6 +1,6 @@
 [versions]
 #jetbrains
-kotlin = "1.9.21"
+kotlin = "1.9.22"
 kotlinxSerializationJson = "1.6.2"
 #Fossify
 commons = "1.0.101"

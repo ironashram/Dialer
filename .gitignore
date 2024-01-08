@@ -11,3 +11,5 @@ keystore.properties
 fastlane/fastlane.json
 Gemfile
 Gemfile.lock
+/app/fdroid/release/dialer-fdroid-release.apk
+/app/fdroid/release/output-metadata.json

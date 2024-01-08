@@ -28,7 +28,7 @@ class DialerActivity : SimpleActivity() {
                 initOutgoingCall()
             }
         } else {
-            toast(R.string.unknown_error_occurred)
+            toast(org.fossify.commons.R.string.unknown_error_occurred)
             finish()
         }
     }

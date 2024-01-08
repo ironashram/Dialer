@@ -18,10 +18,10 @@ class ChangeSortingDialog(val activity: BaseSimpleActivity, private val showCust
 
     init {
         activity.getAlertDialogBuilder()
-            .setPositiveButton(R.string.ok) { dialog, which -> dialogConfirmed() }
-            .setNegativeButton(R.string.cancel, null)
+            .setPositiveButton(org.fossify.commons.R.string.ok) { dialog, which -> dialogConfirmed() }
+            .setNegativeButton(org.fossify.commons.R.string.cancel, null)
             .apply {
-                activity.setupDialogStuff(binding.root, this, R.string.sort_by)
+                activity.setupDialogStuff(binding.root, this, org.fossify.commons.R.string.sort_by)
             }
 
         currSorting = if (showCustomSorting && config.isCustomOrderSelected) {
